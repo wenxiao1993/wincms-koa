@@ -3,9 +3,14 @@ var app = require('koa')()
   , json = require('koa-json')
   , views = require('koa-views')
   , onerror = require('koa-onerror');
+const log4js = require('./utils/log4js');
 
 var index = require('./routes/index');
 var users = require('./routes/users');
+
+
+
+
 
 // error handler
 onerror(app);
@@ -23,6 +28,7 @@ app.use(function *(next){
   var start = new Date;
   yield next;
   var ms = new Date - start;
+  log4js.info('111')
   console.log('%s %s - %s', this.method, this.url, ms);
 });
 
